@@ -80,7 +80,6 @@ const axios = Axios.create({
         process.exit(1);
     }
 
-
     // Supply a 'X-Registry-Auth' header to work with portainer
     const xRegistryAuth = { registryId: registryFromList.Id };
     const xRegistryAuthStr = Buffer.from(JSON.stringify(xRegistryAuth)).toString("base64");
@@ -183,7 +182,8 @@ const axios = Axios.create({
                 id: stackToUpdate.Id,
                 StackFileContent: composeFile.toString(),
                 Env: composeEnvArray,
-                Prune: true
+                Prune: true,
+                PullImage: true
             });
 
         if (stackUpdateResponse.status !== 200) {
